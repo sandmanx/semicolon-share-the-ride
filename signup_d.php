@@ -2,7 +2,7 @@
 	$host="localhost";
 	$dbuser="root";
 	$pass="";
-	$dbname="mysite";
+	$dbname="project"
 	$conn=mysqli_connect($host,$dbuser,$pass,$dbname);
 
 	if(mysqli_connect_error())
@@ -23,14 +23,16 @@
 				$email=$_POST['email'];
 				$username=$_POST['username'];
 				$pass=$_POST['pass'];
-					if(empty($name) || empty($email) || empty($username) || empty($pass))
+				$c_pass=$_POST['c_pass'];
+				$c_no=$_POST['c_no'];
+					if(empty($name) || empty($email) || empty($username) || empty($pass) || empty($c_pass) || empty($c_no))
 					{
 						echo "Please fill all the fields xD";
 					}
 					else
 					{
-						$sql="INSERT INTO user(name,email,username,pass)"
-							"VALUES('$name','$email','$username','$pass')"
+						$sql="INSERT INTO signup(Name,Email,UserName,Password,CPassword,ContactNumber)".
+							"VALUES('$name','$email','$username','$pass', '$c_pass', '$c_no')"
 						$res=mysqli_query($conn,$sql);
 
 						if(!res)
