@@ -1,16 +1,3 @@
-<php
-	$host="localhost";
-	$dbuser="root";
-	$pass="";
-	$dbname="project"
-	$conn=mysqli_connect($host,$dbuser,$pass,$dbname);
-
-	if(mysqli_connect_error())
-	{
-		die("Fault in our connection" .mysqli_connect_error());
-	}
-?>
-
 <html>
 	<head>
 		<title>Signup</title>
@@ -19,6 +6,16 @@
 		<?php
 			if(isset($_POST['submit']))
 			{
+				$host="localhost";
+				$dbuser="root";
+				$pass="";
+				$dbname="project";
+				$connect=mysqli_connect($host,$dbuser,$pass,$dbname);
+
+				if(mysqli_connect_error())
+				{
+					die("Fault in our connection" .mysqli_connect_error());
+				}
 				$name=$_POST['name'];
 				$email=$_POST['email'];
 				$username=$_POST['username'];
@@ -32,12 +29,12 @@
 					else
 					{
 						$sql="INSERT INTO signup(Name,Email,UserName,Password,CPassword,ContactNumber)".
-							"VALUES('$name','$email','$username','$pass', '$c_pass', '$c_no')"
-						$res=mysqli_query($conn,$sql);
+							"VALUES('$name','$email','$username','$pass', '$c_pass', '$c_no')";
+						$result=mysqli_query($connect,$sql);
 
-						if(!res)
+						if(!$result)
 						{
-							die("Error 1" . mysqqli_error($conn));
+							die("Error 1" . mysqli_error($connect));
 						}
 						else
 						{
